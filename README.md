@@ -9,7 +9,7 @@ An inventory management tool designed specifically for a bakery looking to strea
 - **Real-time Stock Management**: Quickly update the quantity of each bread type in the display case.
 - **Automated Baking Calculations**: The system calculates the amount to bake based on required stock, helping the bakery maintain a fresh supply without overproduction.
 - **Responsive Design**: Optimized for both mobile and desktop, making it accessible for staff on various devices.
-- **Intuitive & Tailored Interface**: Clean, user-friendly design tailored for [Nome da Loja] to seamlessly integrate into daily operations.
+- **Intuitive & Tailored Interface**: Clean, user-friendly design tailored to seamlessly integrate into daily operations.
 
 ---
 
