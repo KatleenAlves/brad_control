@@ -17,7 +17,7 @@ RUN pip install -r requirements.txt
 COPY backend/ .  
 # Copia o conteúdo do backend
 
-# Copiar o build do frontend para o backend
+# Copia o build do frontend para o diretório estático do backend
 COPY --from=frontend_build /app/frontend/build /app/backend/static
 
 # Expor a porta do backend
