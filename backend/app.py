@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, send_from_directory
 import os
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder="static")
+app = Flask(__name__, static_folder="../frontend/build")
 CORS(app)
 
 # Dados iniciais com tipos de pães e quantidade necessária
