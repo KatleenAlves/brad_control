@@ -17,17 +17,20 @@ useEffect(() => {
 }, []);
 
 const handleVitrineChange = (nome, quantidade) => {
+    console.log(`Nome: ${nome}, Quantidade no Rayon: ${quantidade}`);
     setQuantidades(prev => ({ ...prev, [nome]: quantidade }));
 
     axios.post(`${apiUrl}/calcular`, {
         nome: nome,
         quantidade: quantidade,
     }).then(response => {
+        console.log("Resposta da API /calcular:", response.data);
         const novoResultado = { ...resultado };
         novoResultado[response.data.nome] = response.data.a_assar;
         setResultado(novoResultado);
     }).catch(error => console.error("Erro ao calcular a assar:", error));
 };
+
 
 
     return (
