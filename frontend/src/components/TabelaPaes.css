@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Container para centralizar a tabela */
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #e9f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 100%;
+    width: 95%; /* Mantém a tabela centralizada e com margem nas laterais */
+    overflow-x: auto; /* Adiciona rolagem horizontal caso necessário */
+}
+
+/* Estilo do título */
+.table-title {
+    font-family: "Lato", sans-serif;
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #33414c;
+}
+
+/* Estilos da tabela */
+table {
+    width: 100%;
+    max-width: 100%; /* A tabela não deve ultrapassar o container */
+    border-collapse: collapse;
+}
+
+thead th {
+    font-family: "Lato", sans-serif;
+    background-color: #6b828a;
+    color: #ffffff;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+}
+
+tbody td {
+    font-family: "Lato", sans-serif;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    background-color: #f2f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+tbody td input[type="number"] {
+    width: 80%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+tbody td input[type="number"]:focus {
+    border-color: #009688;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: #dfeff0;
+}
+
+tbody tr:hover td {
+    background-color: #cce7e8;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .table-wrapper {
+        padding: 10px;
+        overflow-x: auto; /* Permite rolagem horizontal somente em telas menores */
+    }
+    .table-title {
+        font-size: 20px;
+    }
+}
+
+/* Estilo do rodapé */
+footer {
+    font-family: "Lato", sans-serif;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    background-color: #e9f5f5;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    max-width: 100%; /* Garante que o footer não ultrapasse a largura da tela */
+}
