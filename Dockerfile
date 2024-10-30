@@ -1,24 +1,21 @@
 # Etapa 1: Construir o frontend
 FROM node:14 AS frontend_build
 WORKDIR /app/frontend
-# Copia os arquivos de configuração do npm para instalar as dependências
-COPY frontend/package*.json ./
-# Instala as dependências do frontend
+COPY frontend/package*.json ./  
+# Copia package.json e package-lock.json para instalar dependências
 RUN npm install
-# Copia o conteúdo do frontend após instalar as dependencias  
-COPY frontend/ .
-# Faz o build do frontend  
-RUN npm run build  
+COPY frontend/ .  
+# Copia todo o conteúdo do frontend após instalar as dependências
+RUN npm run build
 
 # Etapa 2: Configurar o backend
 FROM python:3.9 AS backend
 WORKDIR /app/backend
-# Copia o arquivo requirements.txt do backend
-COPY backend/requirements.txt ./ 
-# Instala as dependências do backend 
-RUN pip install -r requirements.txt 
-# Copia o conteúdo do backend
+COPY backend/requirements.txt ./  
+# Copia o arquivo requirements.txt para instalar dependências
+RUN pip install -r requirements.txt
 COPY backend/ .  
+# Copia o conteúdo do backend
 
 # Copiar o build do frontend para o backend
 COPY --from=frontend_build /app/frontend/build /app/backend/static
