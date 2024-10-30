@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
+import os
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 CORS(app)
 
 # Dados iniciais com tipos de pães e quantidade necessária
@@ -39,6 +40,14 @@ def calcular_assar():
 
     return jsonify({"error": "Pão não encontrado"}), 404
 
+# Rota para servir arquivos estáticos do frontend
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)

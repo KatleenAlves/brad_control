@@ -13,11 +13,14 @@ COPY backend/requirements.txt ./
 RUN pip install -r requirements.txt
 COPY backend/ .
 
-# Copiar o build do frontend para o backend
+# Copiar o build do frontend para a pasta static do backend
 COPY --from=frontend_build /app/frontend/build /app/backend/static
 
 # Expor a porta do backend
 EXPOSE 5000
+
+# Definir variável de ambiente para o Flask rodar externamente
+ENV FLASK_RUN_HOST=0.0.0.0
 
 # Comando para iniciar o backend
 CMD ["python", "app.py"]
