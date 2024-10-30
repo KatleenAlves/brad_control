@@ -2,12 +2,22 @@ from flask import Flask, jsonify, request, send_from_directory
 import os
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder="../frontend/build")
+app = Flask(__name__, static_folder="frontend/build")
 CORS(app)
 
-# Lista de pães - Definida no nível global para acesso em ambas as funções
-paes = [
-    {"nome": "Claire", "quantidade_necessaria": 15},
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_frontend(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
+
+# API endpoints
+@app.route('/paes', methods=['GET'])
+def listar_paes():
+    paes = [
+        {"nome": "Claire", "quantidade_necessaria": 15},
     {"nome": "Couronne", "quantidade_necessaria": 10},
     {"nome": "Tessinois", "quantidade_necessaria": 8},
     {"nome": "Baguete", "quantidade_necessaria": 20},
@@ -18,18 +28,8 @@ paes = [
     {"nome": "Pagnol Claire", "quantidade_necessaria": 6},
     {"nome": "Pagnol Rustique", "quantidade_necessaria": 4},
     {"nome": "Tresse", "quantidade_necessaria": 2}
-]
-
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve_frontend(path):
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, "index.html")
-
-@app.route('/paes', methods=['GET'])
-def listar_paes():
+    
+    ]
     return jsonify(paes)
 
 @app.route('/calcular', methods=['POST'])
@@ -37,8 +37,6 @@ def calcular_assar():
     dados = request.json
     nome = dados["nome"]
     quantidade_vitrine = dados["quantidade"]
-    
-    # Usando a lista global `paes`
     pao = next((p for p in paes if p["nome"] == nome), None)
     if pao:
         quantidade_necessaria = pao["quantidade_necessaria"]
