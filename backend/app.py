@@ -5,6 +5,21 @@ from flask_cors import CORS
 app = Flask(__name__, static_folder="frontend/build")
 CORS(app)
 
+# Definindo a lista de pães fora das funções para ser acessível globalmente
+paes = [
+    {"nome": "Claire", "quantidade_necessaria": 15},
+    {"nome": "Couronne", "quantidade_necessaria": 10},
+    {"nome": "Tessinois", "quantidade_necessaria": 8},
+    {"nome": "Baguete", "quantidade_necessaria": 20},
+    {"nome": "Couronne Sils", "quantidade_necessaria": 4},
+    {"nome": "Tess Sils", "quantidade_necessaria": 4},
+    {"nome": "Gottardo", "quantidade_necessaria": 6},
+    {"nome": "Croix", "quantidade_necessaria": 4},
+    {"nome": "Pagnol Claire", "quantidade_necessaria": 6},
+    {"nome": "Pagnol Rustique", "quantidade_necessaria": 4},
+    {"nome": "Tresse", "quantidade_necessaria": 2}
+]
+
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_frontend(path):
@@ -16,20 +31,6 @@ def serve_frontend(path):
 # API endpoints
 @app.route('/paes', methods=['GET'])
 def listar_paes():
-    paes = [
-        {"nome": "Claire", "quantidade_necessaria": 15},
-    {"nome": "Couronne", "quantidade_necessaria": 10},
-    {"nome": "Tessinois", "quantidade_necessaria": 8},
-    {"nome": "Baguete", "quantidade_necessaria": 20},
-    {"nome": "Couronne Sils", "quantidade_necessaria": 4},
-    {"nome": "Tess Sils", "quantidade_necessaria": 4},
-    {"nome": "Gottardo", "quantidade_necessaria": 6},
-    {"nome": "Croix", "quantidade_necessaria": 4},
-    {"nome": "Pagnol Claire", "quantidade_necessaria": 6},
-    {"nome": "Pagnol Rustique", "quantidade_necessaria": 4},
-    {"nome": "Tresse", "quantidade_necessaria": 2}
-    
-    ]
     return jsonify(paes)
 
 @app.route('/calcular', methods=['POST'])
