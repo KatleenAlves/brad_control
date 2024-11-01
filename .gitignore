@@ -1,0 +1,51 @@
+# Ignorar ambiente virtual Python
+.venv/
+venv/
+env/
+
+# Ignorar dependências do Node.js
+frontend/node_modules/
+
+# Ignorar arquivos de build do frontend
+frontend/build/
+
+# Ignorar arquivos de cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar logs, arquivos temporários e caches
+*.log
+*.cache
+*.temp
+*.bak
+
+# Ignorar arquivos de configuração locais
+*.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignorar arquivos de IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar arquivos de controle de versionamento de ambientes
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Ignorar arquivos de lock específicos
+package-lock.json
+yarn.lock
+
+# Ignorar arquivos gerados pelo pytest
+.pytest_cache/

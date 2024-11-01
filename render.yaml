@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: backend
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PORT
+        value: 5000
+    workingDirectory: backend
+
+  - type: web
+    name: frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://<your-backend-service-name>.onrender.com
